@@ -41,11 +41,14 @@ describe('totalsByMethod', () => {
 
 describe('spendByNote', () => {
   it('groups notes case-insensitively, biggest first', () => {
-    const slices = spendByNote([
-      expense({ amount: 30000, note: 'Fuel' }),
-      expense({ amount: 20000, note: 'fuel ' }),
-      expense({ amount: 80000, note: 'Rent' }),
-    ]);
+    const slices = spendByNote(
+      [
+        expense({ amount: 30000, note: 'Fuel' }),
+        expense({ amount: 20000, note: 'fuel ' }),
+        expense({ amount: 80000, note: 'Rent' }),
+      ],
+      5,
+    );
 
     expect(slices).toEqual([
       { label: 'Rent', amount: 80000 },
@@ -55,7 +58,9 @@ describe('spendByNote', () => {
 
   it('folds everything past the top few into Other', () => {
     const slices = spendByNote(
-      ['A', 'B', 'C', 'D'].map((note, index) => expense({ note, amount: (4 - index) * 1000 })),
+      ['A', 'B', 'C', 'D'].map((note, index) =>
+        expense({ note, amount: (4 - index) * 1000 }),
+      ),
       2,
     );
 
@@ -63,7 +68,6 @@ describe('spendByNote', () => {
     expect(slices[2]!.amount).toBe(3000);
   });
 });
-
 describe('peopleBalances', () => {
   const loans = [
     loan({ person: 'Arun', kind: 'gave', amount: 500000, date: '2026-10-10' }),

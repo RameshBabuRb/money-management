@@ -17,7 +17,7 @@ export function SpendPie({ slices }: { slices: readonly SpendSlice[] }) {
     offset += share;
     return arc;
   });
-  const [colors, setColors] = useState<any>([
+  const [colors] = useState<any>([
     { name: "Red", hex: "#FF0000" },
   { name: "Blue", hex: "#0000FF" },
   { name: "Green", hex: "#008000" },
