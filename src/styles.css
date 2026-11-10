@@ -193,14 +193,18 @@
   border-radius: 6px;
   background: var(--bg);
   color: var(--ink);
-  font: inherit;
-  font-size: 16px !important;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: normal;
+  box-sizing: border-box;
+  -webkit-appearance: none;
 }
 
 .input--amount {
   min-height: 60px;
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 30px;
+  line-height: 1.2;
   border-color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
