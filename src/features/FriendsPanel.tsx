@@ -209,7 +209,7 @@ function LoanForm({ onSaved }: { onSaved: (date: string) => void }) {
       <Field label="Who?" htmlFor="loan-person">
         <input
           id="loan-person"
-          className="input"
+          className="input input--amount"
           list="person-options"
           autoComplete="off"
           placeholder="Name"
