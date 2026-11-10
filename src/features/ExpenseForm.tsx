@@ -83,10 +83,10 @@ export function ExpenseForm({ editing, onSaved, onCancelEdit }: ExpenseFormProps
       <Field label="What was it for?" htmlFor="note">
         <input
           id="note"
-          className="input"
+          className="input input--amount"
           list="note-options"
           autoComplete="off"
-          placeholder="Type it once, then pick it next time"
+          placeholder="Type"
           value={values.note}
           onChange={(event) => set({ note: event.target.value })}
         />
