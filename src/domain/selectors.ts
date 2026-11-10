@@ -42,7 +42,7 @@ export interface SpendSlice {
  * case-insensitively, keeping the first spelling seen, and everything past
  * the top `limit` folds into one "Other" slice so the chart stays readable.
  */
-export function spendByNote(expenses: readonly Expense[], limit = 4): SpendSlice[] {
+export function spendByNote(expenses: readonly Expense[], limit: number): SpendSlice[] {
   const byKey = new Map<string, SpendSlice>();
 
   for (const expense of expenses) {

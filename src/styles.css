@@ -203,7 +203,7 @@
 .input--amount {
   min-height: 60px;
   font-family: 'Instrument Serif', Georgia, serif;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 1.2;
   border-color: var(--ink);
   font-variant-numeric: tabular-nums;

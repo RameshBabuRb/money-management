@@ -1,6 +1,7 @@
 import { Money } from '@/components/Money';
 import { sumAmounts } from '@/domain/selectors';
 import type { SpendSlice } from '@/domain/selectors';
+import { useState } from 'react';
 
 /** A circle of radius 100/2π has a circumference of 100, so dash lengths read as percentages. */
 const R = 15.9155;
@@ -16,6 +17,26 @@ export function SpendPie({ slices }: { slices: readonly SpendSlice[] }) {
     offset += share;
     return arc;
   });
+  const [colors, setColors] = useState<any>([
+    { name: "Red", hex: "#FF0000" },
+  { name: "Blue", hex: "#0000FF" },
+  { name: "Green", hex: "#008000" },
+  { name: "Yellow", hex: "#FFFF00" },
+  { name: "Magenta", hex: "#FF00FF" },
+  { name: "Lime", hex: "#00FF00" },
+  { name: "Navy", hex: "#000080" },
+  { name: "Coral", hex: "#FF7F50" },
+  { name: "Orange", hex: "#FFA500" },
+  { name: "Purple", hex: "#800080" },
+  { name: "Pink", hex: "#FFC0CB" },
+  { name: "Black", hex: "#000000" },
+  { name: "White", hex: "#FFFFFF" },
+  { name: "Gray", hex: "#808080" },
+  { name: "Brown", hex: "#A52A2A" },
+  { name: "Teal", hex: "#008080" },
+  { name: "Cyan", hex: "#00FFFF" },
+  ]);
+
 
   return (
     <div className="pie">
@@ -27,7 +48,8 @@ export function SpendPie({ slices }: { slices: readonly SpendSlice[] }) {
             cy="21"
             r={R}
             fill="none"
-            stroke={`var(--slice-${arc.index + 1})`}
+            // stroke={`var(--slice-${arc.index + 1})`}
+            stroke={colors[arc.index % colors.length].hex}
             strokeWidth="10"
             strokeDasharray={`${arc.share} ${100 - arc.share}`}
             strokeDashoffset={25 - arc.offset}
@@ -38,7 +60,8 @@ export function SpendPie({ slices }: { slices: readonly SpendSlice[] }) {
       <ul className="pie__legend">
         {arcs.map((arc) => (
           <li key={arc.label}>
-            <span className="pie__swatch" style={{ background: `var(--slice-${arc.index + 1})` }} />
+            {/* <span className="pie__swatch" style={{ background: `var(--slice-${arc.index + 1})` }} /> */}
+            <span className="pie__swatch" style={{ background: colors[arc.index % colors.length].hex }} />
             <span className="pie__label">{arc.label}</span>
             <span className="pie__share">{Math.round(arc.share)}%</span>
             <Money value={arc.amount} className="pie__amount" />

@@ -37,6 +37,7 @@ export function App() {
   const [editing, setEditing] = useState<Expense | null>(null);
   const [tabBeforeEdit, setTabBeforeEdit] = useState<TabId | null>(null);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
+  const [selectAllClicked, setSelectAllClicked] = useState<boolean>(false);
   const closeConfirmation = useCallback(() => setConfirmation(null), []);
 
   const monthExpenses = expensesForMonth(data, month);
@@ -160,8 +161,17 @@ export function App() {
         <div className="panel">
           {monthExpenses.length > 0 && (
             <section className="card">
-              <h2>Where it went</h2>
-              <SpendPie slices={spendByNote(monthExpenses)} />
+              <input
+                style={{ marginBottom: "10px", marginRight: "10px" }}
+                type="checkbox"
+                onChange={(e) => {
+                  setSelectAllClicked(e.target.checked);
+                }}
+              />
+              <span>See all Expenses</span>
+              <h2   style={{ marginLeft: "5px" }}>Where it went</h2>
+
+              <SpendPie slices={spendByNote(monthExpenses, selectAllClicked ? monthExpenses.length : 4)} />
             </section>
           )}
 
